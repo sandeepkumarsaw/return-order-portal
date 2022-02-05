@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CompProcService } from './comp-proc.service';
+import { ComponentProcService } from './componentProc.service';
 
 describe('CompProcService', () => {
-  let service: CompProcService;
+  let service: ComponentProcService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CompProcService);
+    service = TestBed.inject(ComponentProcService);
   });
 
   it('should be created', () => {

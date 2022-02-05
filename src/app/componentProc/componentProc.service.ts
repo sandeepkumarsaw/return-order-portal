@@ -4,12 +4,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class procDetailsService {
+export class ComponentProcService {
 
-  private _compProcURL = "https://localhost:44381/api/ProcessDetail";
+  private _componentProcURL = "https://localhost:44381/api/ProcessDetail";
+  private _completeProcURL = "https://localhost:44381/api/CompleteProcessing";
+  
   constructor(private http: HttpClient) { }
 
-  sendProcessDetailData(processDetail: any) {
-    return this.http.post<any>(this._compProcURL, processDetail, {headers: new HttpHeaders({ "Content-Type": "application/json"}) } )
+  sendProcessDetailData(componentProcDetail: any) {
+    return this.http.post<any>(this._componentProcURL, componentProcDetail, {headers: new HttpHeaders({ "Content-Type": "application/json"}) } )
+  }
+
+  sendCompleteProcData(completeProcDetail: any) {
+    return this.http.post<any>(this._completeProcURL, completeProcDetail, {headers: new HttpHeaders({ "Content-Type": "application/json"}) } )
   }
 }

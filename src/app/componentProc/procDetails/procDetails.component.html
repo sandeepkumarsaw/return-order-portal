@@ -8,12 +8,12 @@
 
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="name">Name:</label>
+                        <label class="form-label" for="name">Name:</label>
                         <input [(ngModel)]="procDetailsData.name" name="name" type="text" placeholder="FirstName LastName" class="form-control rounded-0" maxlength="70" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="contactNumber">Contact Number:</label>
+                        <label class="form-label" for="contactNumber">Contact Number:</label>
                         <input [(ngModel)]="procDetailsData.contactNumber" name="contactNumber" type="tel" pattern="/((\+*)((0[ -]*)*|((91 )*))((\d{12})+|(\d{10})+))|\d{5}([- ]*)\d{6}/" class="form-control rounded-0" required>
                     </div>
                 </div>
@@ -22,45 +22,8 @@
             <div class="card rounded-1">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="creditCardDetails">Credit Card Details:</label>
+                        <label class="form-label" for="creditCardDetails">Credit Card Details:</label>
                         <input [(ngModel)]="procDetailsData.creditCardNumber" name="creditCardNumber" type="password" id="creditCardNumber" class="form-control" maxlength="10"/>
-                        
-                        <!--
-                        <div class="row mb-4">
-                            
-                            <div class="col">
-                                <div class="form-outline">
-                                    <input type="text" id="formNameOnCard" class="form-control" placeholder="ABC XYZ" maxlength="70"/>
-                                    <label class="form-label" for="nameOnCreditCard">Name On Card</label>
-                                </div>
-                            </div>
-                            
-                            <div class="col">
-                                <div class="form-outline">
-                                    <input [(ngModel)]="procDetailsData.creditCardNumber" name="creditCardNumber" type="number" id="formCardNumber" class="form-control" />
-                                    <label class="form-label" for="creditCardNumber" pattern="/^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/"
-                                    >Credit Card Number</label
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row mb-4">
-                            <div class="col-3">
-                                <div class="form-outline">
-                                    <input type="text" id="formExpiration" class="form-control" placeholder="MM/YY" pattern="/^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/"/>
-                                    <label class="form-label" for="creditCardExpiration">Expiry Date</label>
-                                </div>
-                            </div>
-                            
-                            <div class="col-3">
-                                <div class="form-outline">
-                                    <input type="text" id="formCVV" class="form-control" placeholder="123" pattern="^[0-9]{3, 4}$"/>
-                                    <label class="form-label" for="creditCardCVV">CVV</label>
-                                </div>
-                            </div>
-                        </div>
-                        -->
                     </div>
                 </div>
             </div>
@@ -68,17 +31,18 @@
             <div class="card rounded-1">
                 <div class="card-body">
                     <div class="form-group">
-                        <label class="form-label" for="componentType">Component Type:</label>
+                        <p class="form-label" for="componentDetail">Defective Component Type:</p>
+                        <label class="form-label" for="componentType">Type:</label>
                         <br>
                         <select [(ngModel)]="procDetailsData.componentDetail.componentType" name="componentType" class="form-select">
                             <option value="Accessory" selected>Accessory</option>
-                            <option value="Protective sheath">Protective Sheath</option>
-                            <option value="IntegralPart">IntegralPart</option>
+                            <option value="ProtectiveSheath">Protective Sheath</option>
+                            <option value="IntegralItem">Integral Item</option>
                         </select>
                     </div>
                     
-                    <div [hidden] = "procDetailsData.componentDetail.componentType != 'IntegralPart'" class="form-group">
-                        <label for="isPriorityRequest">Priority Request?</label>
+                    <div [hidden] = "procDetailsData.componentDetail.componentType != 'IntegralItem'" class="form-group">
+                        <label class="form-label" for="isPriorityRequest">Priority Request?</label>
                         <div class="form-check">
                             <input [(ngModel)]="procDetailsData.isPriorityRequest" class="form-check-input" name="isPriorityRequest" type="checkbox" value="true" id="flexCheckDefault">
                             <label class="form-check-label" for="priorityYes">
@@ -88,12 +52,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="componentName">Component Name:</label>
+                        <label class="form-label" for="componentName">Name:</label>
                         <input [(ngModel)]="procDetailsData.componentDetail.componentName" name="componentName" type="text" class="form-control rounded-0" maxlength="25" required>
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label" for="quantity">Component Quantity:</label>
+                        <label class="form-label" for="quantity">Quantity:</label>
                         <input [(ngModel)]="procDetailsData.componentDetail.quantity" name="quantity" type="number" class="form-control col-3" value="1"/>
                     </div>
                 </div>
@@ -104,9 +68,7 @@
                     <button (click)="postprocDetailsData()" class="btn btn-primary float-right">Get Details</button>
                 </div>
             </div>
-
-            <br>
-            <br>
+            <br/><br/>
         </form>
     </div>
 
@@ -117,16 +79,30 @@
 
         <div class="card-body">
             <p class="form-label" for="requestId">Name: {{ procDetailsData.name }}</p>
+            
             <p class="form-label" for="requestId">Contact Number: {{ procDetailsData.contactNumber }}</p>
+            
             <p class="form-label" for="requestId">Credit Card Number: {{ procDetailsData.creditCardNumber }}</p>
+            
             <p class="form-label" for="requestId">Priority Request?: {{ procDetailsData.isPriorityRequest }}</p>
+            
             <p class="form-label" for="requestId">Component Type: {{ procDetailsData.componentDetail.componentType }}</p>
+            
             <p class="form-label" for="requestId">Component Name: {{ procDetailsData.componentDetail.componentName }}</p>
+            
             <p class="form-label" for="requestId">Quantity: {{ procDetailsData.componentDetail.quantity }}</p>
-
+            
             <p class="form-label" for="processingCharge">Processing Charge: {{ procDetailsRes.processingCharge }}</p>
+            
             <p class="form-label" for="packagingAndDeliveryCharge">Packaging And Delivery Charge: {{ procDetailsRes.packagingAndDeliveryCharge}}</p>
+            
             <p class="form-label" for="dateOfDelivery">Date Of Delivery: {{ procDetailsRes.dateOfDelivery }}</p>
+            <br/>
+            
+            <button (click)="postCompleteProcDetails()" class="btn btn-primary float-right">Confirm</button>
         </div>
+        
+        <br/>
+        <p class="form-label" for="completeProcRes">{{ completeProcRes }}</p>
     </div>
 </div>

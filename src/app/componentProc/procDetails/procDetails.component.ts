@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { procDetailsService } from '../componentProc.service';
+import { ComponentProcService } from '../componentProc.service';
 
 @Component({
   selector: 'app-component-processing-details',
@@ -30,7 +30,16 @@ export class ProcDetailsComponent implements OnInit {
     dateOfDelivery: null
   }
 
-  constructor(private _compProcD: procDetailsService, private _router: Router) { }
+  completeProcDetails = {
+    requestId: null,
+    creditCardNumber: null,
+    creditLimit: 0,
+    processingCharge: null
+  }
+
+  completeProcRes = "";
+
+  constructor(private _compProcD: ComponentProcService, private _router: Router) { }
 
   ngOnInit(): void {}
 
@@ -45,6 +54,25 @@ export class ProcDetailsComponent implements OnInit {
           this.procDetailsRes.packagingAndDeliveryCharge = res.packagingAndDeliveryCharge
           this.procDetailsRes.dateOfDelivery = res.dateOfDelivery
           this.dispProcDetails = false
+          // this._router.navigate([''])
+        },
+      err => console.log(err)
+    )
+  }
+
+  postCompleteProcDetails() {
+    this.completeProcDetails.requestId = this.procDetailsRes.requestId
+    this.completeProcDetails.creditCardNumber  = this.procDetailsData.creditCardNumber
+    // this.completeProcDetails.creditLimit
+    this.completeProcDetails.processingCharge = this.procDetailsRes.processingCharge
+
+    console.log(this.completeProcDetails)
+    
+    this._compProcD.sendCompleteProcData(this.completeProcDetails)
+      .subscribe(
+        res => {
+          console.log(res)
+          this.completeProcRes = res
           // this._router.navigate([''])
         },
       err => console.log(err)
