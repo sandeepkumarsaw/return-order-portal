@@ -1,0 +1,105 @@
+<div class="row pt-5 pb-5">
+    <div class="col-md-8 mx-auto">
+        <form class="form">
+            <div class="card rounded-1">
+                <div class="card-header">
+                    <h3 class="mb-0">Component Processing Details</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input [(ngModel)]="compProcData.name" name="name" type="text" placeholder="FirstName LastName" class="form-control rounded-0" maxlength="70" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contactNumber">Contact Number:</label>
+                        <input [(ngModel)]="compProcData.contactNumber" name="contactNumber" type="tel" pattern="/((\+*)((0[ -]*)*|((91 )*))((\d{12})+|(\d{10})+))|\d{5}([- ]*)\d{6}/" class="form-control rounded-0" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card rounded-1">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="creditCardDetails">Credit Card Details:</label>
+                        
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="text" id="formNameOnCard" class="form-control" placeholder="ABC XYZ" maxlength="70"/>
+                                    <label class="form-label" for="nameOnCreditCard">Name On Card</label>
+                                </div>
+                            </div>
+                            
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input [(ngModel)]="compProcData.creditCardNumber" name="creditCardNumber" type="number" id="formCardNumber" class="form-control" />
+                                    <label class="form-label" for="creditCardNumber" pattern="/^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/"
+                                    >Credit Card Number</label
+                                    >
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="row mb-4">
+                            <div class="col-3">
+                                <div class="form-outline">
+                                    <input type="text" id="formExpiration" class="form-control" placeholder="MM/YY" pattern="/^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/"/>
+                                    <label class="form-label" for="creditCardExpiration">Expiry Date</label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-3">
+                                <div class="form-outline">
+                                    <input type="text" id="formCVV" class="form-control" placeholder="123" pattern="^[0-9]{3, 4}$"/>
+                                    <label class="form-label" for="creditCardCVV">CVV</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card rounded-1">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="isPriorityRequest">Priority Request?</label>
+                        <div class="form-check">
+                            <input [(ngModel)]="compProcData.isPriorityRequest" class="form-check-input" name="isPriorityRequest" type="checkbox" value="true" id="flexCheckDefault">
+                            <label class="form-check-label" for="priorityYes">
+                            Yes
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card rounded-1">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="form-label" for="componentType">Component Type:</label>
+                        <br>
+                        <select [(ngModel)]="compProcData.componentDetail.componentType" name="componentType" class="form-select">
+                            <option value="Accessory" selected>Accessory</option>
+                            <option value="Protective sheath">Protective Sheath</option>
+                            <option value="IntegralPart">IntegralPart</option>
+                        </select>
+                    </div>
+                                                            
+                    <div class="form-group">
+                        <label class="form-label" for="componentName">Component Name:</label>
+                        <input [(ngModel)]="compProcData.componentDetail.componentName" name="componentName" type="text" class="form-control rounded-0" maxlength="25" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="quantity">Component Quantity:</label>
+                        <input [(ngModel)]="compProcData.componentDetail.quantity" name="quantity" type="number" class="form-control col-3" value="1"/>
+                    </div>
+                </div>
+            
+                <button (click)="compProcDataSend()" class="btn btn-primary text-center">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

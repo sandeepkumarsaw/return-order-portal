@@ -8,13 +8,13 @@
         <ul class="navbar-nav ml-auto">
             <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
             <!-- *ngIf="!_authService.loggedIn()" -->
-            <a class="nav-link" routerLink="/" routerLinkActive="active">ABC</a>
+            <a class="nav-link" routerLink="/comp-proc-details" routerLinkActive="active">Component Processing</a>
             <a class="nav-link" routerLink="/" routerLinkActive="active">XYZ</a>
             <a class="nav-link" style="cursor:pointer">Logout</a>
              <!-- *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()" -->
         </ul>
     </div>
 </nav>    
-    <div class="container">
-        <router-outlet></router-outlet>            
-    </div>
+<div class="container">
+    <router-outlet></router-outlet>            
+</div>
