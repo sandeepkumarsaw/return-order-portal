@@ -1,9 +1,9 @@
 <div class="row pt-5 pb-5">
-    <div class="col-md-8 mx-auto">
+    <div [hidden] = "!dispProcDetails" class="col-md-8 mx-auto">
         <form class="form">
             <div class="card rounded-1">
                 <div class="card-header">
-                    <h3 class="mb-0">Component Processing Details</h3>
+                    <h3 class="mb-0">Component Processing</h3>
                 </div>
 
                 <div class="card-body">
@@ -23,8 +23,11 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="creditCardDetails">Credit Card Details:</label>
+                        <input [(ngModel)]="procDetailsData.creditCardNumber" name="creditCardNumber" type="password" id="creditCardNumber" class="form-control" maxlength="10"/>
                         
+                        <!--
                         <div class="row mb-4">
+                            
                             <div class="col">
                                 <div class="form-outline">
                                     <input type="text" id="formNameOnCard" class="form-control" placeholder="ABC XYZ" maxlength="70"/>
@@ -41,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-            
+                        
                         <div class="row mb-4">
                             <div class="col-3">
                                 <div class="form-outline">
@@ -57,20 +60,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card rounded-1">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="isPriorityRequest">Priority Request?</label>
-                        <div class="form-check">
-                            <input [(ngModel)]="procDetailsData.isPriorityRequest" class="form-check-input" name="isPriorityRequest" type="checkbox" value="true" id="flexCheckDefault">
-                            <label class="form-check-label" for="priorityYes">
-                            Yes
-                            </label>
-                        </div>
+                        -->
                     </div>
                 </div>
             </div>
@@ -86,7 +76,17 @@
                             <option value="IntegralPart">IntegralPart</option>
                         </select>
                     </div>
-                                                            
+                    
+                    <div [hidden] = "procDetailsData.componentDetail.componentType != 'IntegralPart'" class="form-group">
+                        <label for="isPriorityRequest">Priority Request?</label>
+                        <div class="form-check">
+                            <input [(ngModel)]="procDetailsData.isPriorityRequest" class="form-check-input" name="isPriorityRequest" type="checkbox" value="true" id="flexCheckDefault">
+                            <label class="form-check-label" for="priorityYes">
+                            Yes
+                            </label>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="form-label" for="componentName">Component Name:</label>
                         <input [(ngModel)]="procDetailsData.componentDetail.componentName" name="componentName" type="text" class="form-control rounded-0" maxlength="25" required>
@@ -97,15 +97,36 @@
                         <input [(ngModel)]="procDetailsData.componentDetail.quantity" name="quantity" type="number" class="form-control col-3" value="1"/>
                     </div>
                 </div>
-                
-                <div class="form-group">
-                    <button (click)="postData()" class="btn btn-primary text-center">Submit</button>
-                </div>
-                <button (click)="postData()" class="btn btn-primary text-center">Submit</button>
-
-                <!-- procDetailsResponse -->
-
             </div>
+                
+            <div class="card rounded-1">
+                <div class="card-body">
+                    <button (click)="postprocDetailsData()" class="btn btn-primary float-right">Get Details</button>
+                </div>
+            </div>
+
+            <br>
+            <br>
         </form>
+    </div>
+
+    <div [hidden] = "dispProcDetails" class="card rounded-1 col-md-8 mx-auto">
+        <div class="card-header">
+            <h3 class="mb-0">Process Details</h3>
+        </div>
+
+        <div class="card-body">
+            <p class="form-label" for="requestId">Name: {{ procDetailsData.name }}</p>
+            <p class="form-label" for="requestId">Contact Number: {{ procDetailsData.contactNumber }}</p>
+            <p class="form-label" for="requestId">Credit Card Number: {{ procDetailsData.creditCardNumber }}</p>
+            <p class="form-label" for="requestId">Priority Request?: {{ procDetailsData.isPriorityRequest }}</p>
+            <p class="form-label" for="requestId">Component Type: {{ procDetailsData.componentDetail.componentType }}</p>
+            <p class="form-label" for="requestId">Component Name: {{ procDetailsData.componentDetail.componentName }}</p>
+            <p class="form-label" for="requestId">Quantity: {{ procDetailsData.componentDetail.quantity }}</p>
+
+            <p class="form-label" for="processingCharge">Processing Charge: {{ procDetailsRes.processingCharge }}</p>
+            <p class="form-label" for="packagingAndDeliveryCharge">Packaging And Delivery Charge: {{ procDetailsRes.packagingAndDeliveryCharge}}</p>
+            <p class="form-label" for="dateOfDelivery">Date Of Delivery: {{ procDetailsRes.dateOfDelivery }}</p>
+        </div>
     </div>
 </div>

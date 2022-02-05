@@ -9,32 +9,43 @@ import { procDetailsService } from '../componentProc.service';
 })
 export class ProcDetailsComponent implements OnInit {
   
+  dispProcDetails = true;
+
   procDetailsData = {
-    name: "",
-    contactNumber: "",
-    creditCardNumber: "",
+    name: null,
+    contactNumber: null,
+    creditCardNumber: null,
     isPriorityRequest: false,
     componentDetail: {
-      componentType: "",
-      componentName: "",
-      quantity: 0
+      componentType: null,
+      componentName: null,
+      quantity: null
     }
   }
 
-  procDetailsResponse:any = []
+  procDetailsRes = {
+    requestId: null,
+    processingCharge: null,
+    packagingAndDeliveryCharge: null,
+    dateOfDelivery: null
+  }
 
   constructor(private _compProcD: procDetailsService, private _router: Router) { }
 
   ngOnInit(): void {}
 
-  postData() {
+  postprocDetailsData() {
     console.log(this.procDetailsData)
     this._compProcD.sendProcessDetailData(this.procDetailsData)
       .subscribe(
         res => {
           console.log(res)
-          this.procDetailsResponse = res
-          this._router.navigate([''])
+          this.procDetailsRes.requestId = res.requestId
+          this.procDetailsRes.processingCharge = res.processingCharge
+          this.procDetailsRes.packagingAndDeliveryCharge = res.packagingAndDeliveryCharge
+          this.procDetailsRes.dateOfDelivery = res.dateOfDelivery
+          this.dispProcDetails = false
+          // this._router.navigate([''])
         },
       err => console.log(err)
     )

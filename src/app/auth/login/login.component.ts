@@ -9,7 +9,10 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginUserData = { username: "", password: "" }
+  loginUserData = {
+    username: null,
+    password: null
+  }
 
   constructor(private _auth: AuthService, private _router: Router) { }
 
