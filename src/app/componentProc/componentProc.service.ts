@@ -12,10 +12,10 @@ export class ComponentProcService {
   constructor(private http: HttpClient) { }
 
   sendProcessDetailData(componentProcDetail: any) {
-    return this.http.post<any>(this._componentProcURL, componentProcDetail, {headers: new HttpHeaders({ "Content-Type": "application/json"}) } )
+    return this.http.post<any>(this._componentProcURL, componentProcDetail, {headers: new HttpHeaders({ "Content-Type": "application/json"}) })
   }
 
   sendCompleteProcData(completeProcDetail: any) {
-    return this.http.post<any>(this._completeProcURL, completeProcDetail, {headers: new HttpHeaders({ "Content-Type": "application/json"}) } )
+    return this.http.post<any>(this._completeProcURL, completeProcDetail, {headers: new HttpHeaders({ "Content-Type": "application/json"})})
   }
 }

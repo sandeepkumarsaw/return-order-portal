@@ -9,12 +9,12 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label class="form-label" for="name">Name:</label>
-                        <input [(ngModel)]="procDetailsData.name" name="name" type="text" placeholder="FirstName LastName" class="form-control rounded-0" maxlength="70" required>
+                        <input [(ngModel)]="procDetailsData.name" name="name" type="text" placeholder="FirstName LastName" class="form-control rounded-1" maxlength="70" required>
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label" for="contactNumber">Contact Number:</label>
-                        <input [(ngModel)]="procDetailsData.contactNumber" name="contactNumber" type="tel" pattern="/((\+*)((0[ -]*)*|((91 )*))((\d{12})+|(\d{10})+))|\d{5}([- ]*)\d{6}/" class="form-control rounded-0" required>
+                        <input [(ngModel)]="procDetailsData.contactNumber" name="contactNumber" type="tel" pattern="/((\+*)((0[ -]*)*|((91 )*))((\d{12})+|(\d{10})+))|\d{5}([- ]*)\d{6}/" class="form-control rounded-1" required>
                     </div>
                 </div>
             </div>
@@ -22,8 +22,13 @@
             <div class="card rounded-1">
                 <div class="card-body">
                     <div class="form-group">
-                        <label class="form-label" for="creditCardDetails">Credit Card Details:</label>
-                        <input [(ngModel)]="procDetailsData.creditCardNumber" name="creditCardNumber" type="password" id="creditCardNumber" class="form-control" maxlength="10"/>
+                        <label class="form-label" for="creditCardDetails">Credit Card Number:</label>
+                        <input [(ngModel)]="procDetailsData.creditCardNumber" name="creditCardNumber" type="password" id="creditCardNumber" class="form-control rounded-1" maxlength="12"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="creditLimit">Credit Limit:</label>
+                        <input [(ngModel)]="completeProcDetails.creditLimit" name="creditLimit" type="number" id="creditLimit" class="form-control rounded-1" maxlength="12"/>
                     </div>
                 </div>
             </div>
@@ -34,7 +39,7 @@
                         <p class="form-label" for="componentDetail">Defective Component Type:</p>
                         <label class="form-label" for="componentType">Type:</label>
                         <br>
-                        <select [(ngModel)]="procDetailsData.componentDetail.componentType" name="componentType" class="form-select">
+                        <select [(ngModel)]="procDetailsData.componentDetail.componentType" name="componentType" class="form-select rounded-1">
                             <option value="Accessory" selected>Accessory</option>
                             <option value="ProtectiveSheath">Protective Sheath</option>
                             <option value="IntegralItem">Integral Item</option>
@@ -44,7 +49,7 @@
                     <div [hidden] = "procDetailsData.componentDetail.componentType != 'IntegralItem'" class="form-group">
                         <label class="form-label" for="isPriorityRequest">Priority Request?</label>
                         <div class="form-check">
-                            <input [(ngModel)]="procDetailsData.isPriorityRequest" class="form-check-input" name="isPriorityRequest" type="checkbox" value="true" id="flexCheckDefault">
+                            <input [(ngModel)]="procDetailsData.isPriorityRequest" class="form-check-input rounded-1" name="isPriorityRequest" type="checkbox" value="true" id="flexCheckDefault">
                             <label class="form-check-label" for="priorityYes">
                             Yes
                             </label>
@@ -53,12 +58,12 @@
 
                     <div class="form-group">
                         <label class="form-label" for="componentName">Name:</label>
-                        <input [(ngModel)]="procDetailsData.componentDetail.componentName" name="componentName" type="text" class="form-control rounded-0" maxlength="25" required>
+                        <input [(ngModel)]="procDetailsData.componentDetail.componentName" name="componentName" type="text" class="form-control rounded-1" maxlength="25" required>
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label" for="quantity">Quantity:</label>
-                        <input [(ngModel)]="procDetailsData.componentDetail.quantity" name="quantity" type="number" class="form-control col-3" value="1"/>
+                        <input [(ngModel)]="procDetailsData.componentDetail.quantity" name="quantity" type="number" class="form-control rounded-1 col-3" value="1"/>
                     </div>
                 </div>
             </div>
@@ -72,7 +77,7 @@
         </form>
     </div>
 
-    <div [hidden] = "dispProcDetails" class="card rounded-1 col-md-8 mx-auto">
+    <div [hidden] = "dispProcDetails" class="card rounded-1 col-md-6 mx-auto">
         <div class="card-header">
             <h3 class="mb-0">Process Details</h3>
         </div>
@@ -94,7 +99,7 @@
             
             <p class="form-label" for="processingCharge">Processing Charge: {{ procDetailsRes.processingCharge }}</p>
             
-            <p class="form-label" for="packagingAndDeliveryCharge">Packaging And Delivery Charge: {{ procDetailsRes.packagingAndDeliveryCharge}}</p>
+            <p class="form-label" for="packagingAndDeliveryCharge">Packaging And Delivery Charge: {{ procDetailsRes.packagingAndDeliveryCharge }}</p>
             
             <p class="form-label" for="dateOfDelivery">Date Of Delivery: {{ procDetailsRes.dateOfDelivery }}</p>
             <br/>
@@ -102,7 +107,8 @@
             <button (click)="postCompleteProcDetails()" class="btn btn-primary float-right">Confirm</button>
         </div>
         
-        <br/>
-        <p class="form-label" for="completeProcRes">{{ completeProcRes }}</p>
+        <div [hidden] = "dispProcDetails" class=" text-center">
+            <p class="font-weight-bold text-danger" for="completeProcRes">{{ completeProcRes }}</p>
+        </div>
     </div>
 </div>

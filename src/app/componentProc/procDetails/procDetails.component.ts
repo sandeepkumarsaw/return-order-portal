@@ -33,7 +33,7 @@ export class ProcDetailsComponent implements OnInit {
   completeProcDetails = {
     requestId: null,
     creditCardNumber: null,
-    creditLimit: 0,
+    creditLimit: null,
     processingCharge: null
   }
 
@@ -63,7 +63,6 @@ export class ProcDetailsComponent implements OnInit {
   postCompleteProcDetails() {
     this.completeProcDetails.requestId = this.procDetailsRes.requestId
     this.completeProcDetails.creditCardNumber  = this.procDetailsData.creditCardNumber
-    // this.completeProcDetails.creditLimit
     this.completeProcDetails.processingCharge = this.procDetailsRes.processingCharge
 
     console.log(this.completeProcDetails)
@@ -72,7 +71,7 @@ export class ProcDetailsComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res)
-          this.completeProcRes = res
+          this.completeProcRes = res.res
           // this._router.navigate([''])
         },
       err => console.log(err)
