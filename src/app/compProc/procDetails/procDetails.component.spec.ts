@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CompProcDComponent } from './compProcDetails.component';
+import { procDetailsComponent } from './procDetails.component';
 
 describe('CompProcDComponent', () => {
-  let component: CompProcDComponent;
-  let fixture: ComponentFixture<CompProcDComponent>;
+  let component: procDetailsComponent;
+  let fixture: ComponentFixture<procDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CompProcDComponent ]
+      declarations: [ procDetailsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CompProcDComponent);
+    fixture = TestBed.createComponent(procDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

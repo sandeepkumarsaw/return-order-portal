@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CompProcService } from '../compProc.service';
+import { procDetailsService } from '../compProc.service';
 
 @Component({
   selector: 'app-component-processing-details',
-  templateUrl: './compProcDetails.component.html',
-  styleUrls: ['./compProcDetails.component.css']
+  templateUrl: './procDetails.component.html',
+  styleUrls: ['./procDetails.component.css']
 })
-export class CompProcDComponent implements OnInit {
+export class ProcDetailsComponent implements OnInit {
 
   compProcData = {
     name: "",
@@ -21,14 +21,14 @@ export class CompProcDComponent implements OnInit {
     }
   }
 
-  constructor(private _compProcD: CompProcService, private _router: Router) { }
+  constructor(private _compProcD: procDetailsService, private _router: Router) { }
 
   ngOnInit(): void {}
 
-  compProcDataSend() {
+  postData() {
     
     console.log(this.compProcData)
-    this._compProcD.sendData(this.compProcData)
+    this._compProcD.sendProcessDetailData(this.compProcData)
       .subscribe(
         res => {
           console.log(res)
