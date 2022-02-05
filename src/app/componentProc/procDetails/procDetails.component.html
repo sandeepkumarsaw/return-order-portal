@@ -9,12 +9,12 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input [(ngModel)]="compProcData.name" name="name" type="text" placeholder="FirstName LastName" class="form-control rounded-0" maxlength="70" required>
+                        <input [(ngModel)]="procDetailsData.name" name="name" type="text" placeholder="FirstName LastName" class="form-control rounded-0" maxlength="70" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="contactNumber">Contact Number:</label>
-                        <input [(ngModel)]="compProcData.contactNumber" name="contactNumber" type="tel" pattern="/((\+*)((0[ -]*)*|((91 )*))((\d{12})+|(\d{10})+))|\d{5}([- ]*)\d{6}/" class="form-control rounded-0" required>
+                        <input [(ngModel)]="procDetailsData.contactNumber" name="contactNumber" type="tel" pattern="/((\+*)((0[ -]*)*|((91 )*))((\d{12})+|(\d{10})+))|\d{5}([- ]*)\d{6}/" class="form-control rounded-0" required>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                             
                             <div class="col">
                                 <div class="form-outline">
-                                    <input [(ngModel)]="compProcData.creditCardNumber" name="creditCardNumber" type="number" id="formCardNumber" class="form-control" />
+                                    <input [(ngModel)]="procDetailsData.creditCardNumber" name="creditCardNumber" type="number" id="formCardNumber" class="form-control" />
                                     <label class="form-label" for="creditCardNumber" pattern="/^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/"
                                     >Credit Card Number</label
                                     >
@@ -66,7 +66,7 @@
                     <div class="form-group">
                         <label for="isPriorityRequest">Priority Request?</label>
                         <div class="form-check">
-                            <input [(ngModel)]="compProcData.isPriorityRequest" class="form-check-input" name="isPriorityRequest" type="checkbox" value="true" id="flexCheckDefault">
+                            <input [(ngModel)]="procDetailsData.isPriorityRequest" class="form-check-input" name="isPriorityRequest" type="checkbox" value="true" id="flexCheckDefault">
                             <label class="form-check-label" for="priorityYes">
                             Yes
                             </label>
@@ -80,7 +80,7 @@
                     <div class="form-group">
                         <label class="form-label" for="componentType">Component Type:</label>
                         <br>
-                        <select [(ngModel)]="compProcData.componentDetail.componentType" name="componentType" class="form-select">
+                        <select [(ngModel)]="procDetailsData.componentDetail.componentType" name="componentType" class="form-select">
                             <option value="Accessory" selected>Accessory</option>
                             <option value="Protective sheath">Protective Sheath</option>
                             <option value="IntegralPart">IntegralPart</option>
@@ -89,16 +89,22 @@
                                                             
                     <div class="form-group">
                         <label class="form-label" for="componentName">Component Name:</label>
-                        <input [(ngModel)]="compProcData.componentDetail.componentName" name="componentName" type="text" class="form-control rounded-0" maxlength="25" required>
+                        <input [(ngModel)]="procDetailsData.componentDetail.componentName" name="componentName" type="text" class="form-control rounded-0" maxlength="25" required>
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label" for="quantity">Component Quantity:</label>
-                        <input [(ngModel)]="compProcData.componentDetail.quantity" name="quantity" type="number" class="form-control col-3" value="1"/>
+                        <input [(ngModel)]="procDetailsData.componentDetail.quantity" name="quantity" type="number" class="form-control col-3" value="1"/>
                     </div>
                 </div>
-            
+                
+                <div class="form-group">
+                    <button (click)="postData()" class="btn btn-primary text-center">Submit</button>
+                </div>
                 <button (click)="postData()" class="btn btn-primary text-center">Submit</button>
+
+                <!-- procDetailsResponse -->
+
             </div>
         </form>
     </div>

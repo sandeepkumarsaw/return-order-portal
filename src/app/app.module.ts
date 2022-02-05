@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
-import { CompProcModule } from './compProc/compProc.module';
+import { ComponentProcModule } from './componentProc/componentProc.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { CompProcModule } from './compProc/compProc.module';
     HttpClientModule,
     AppRoutingModule,
     AuthModule,
-    CompProcModule
+    ComponentProcModule
   ],
   providers: [],
   bootstrap: [AppComponent]

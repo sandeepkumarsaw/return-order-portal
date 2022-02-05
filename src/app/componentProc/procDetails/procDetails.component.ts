@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { procDetailsService } from '../compProc.service';
+import { procDetailsService } from '../componentProc.service';
 
 @Component({
   selector: 'app-component-processing-details',
@@ -8,8 +8,8 @@ import { procDetailsService } from '../compProc.service';
   styleUrls: ['./procDetails.component.css']
 })
 export class ProcDetailsComponent implements OnInit {
-
-  compProcData = {
+  
+  procDetailsData = {
     name: "",
     contactNumber: "",
     creditCardNumber: "",
@@ -21,21 +21,19 @@ export class ProcDetailsComponent implements OnInit {
     }
   }
 
+  procDetailsResponse:any = []
+
   constructor(private _compProcD: procDetailsService, private _router: Router) { }
 
   ngOnInit(): void {}
 
   postData() {
-    
-    console.log(this.compProcData)
-    this._compProcD.sendProcessDetailData(this.compProcData)
+    console.log(this.procDetailsData)
+    this._compProcD.sendProcessDetailData(this.procDetailsData)
       .subscribe(
         res => {
           console.log(res)
-          localStorage.setItem('requestId', res.requestId)
-          localStorage.setItem('processingCharge', res.processingCharge)
-          localStorage.setItem('packagingAndDeliveryCharge', res.packagingAndDeliveryCharge)
-          localStorage.setItem('dateOfDelivery', res.dateOfDelivery)
+          this.procDetailsResponse = res
           this._router.navigate([''])
         },
       err => console.log(err)

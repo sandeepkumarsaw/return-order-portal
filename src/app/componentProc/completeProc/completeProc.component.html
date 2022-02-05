@@ -9,15 +9,13 @@
                 <form class="form">
                     <div class="form-group">
                         <label for="username">Username:</label>
-                        <input [(ngModel)]="loginUserData.username" name="username" type="text" placeholder="Enter Username" class="form-control rounded-0" required>
+                        <input name="username" type="text" placeholder="Enter Username" class="form-control rounded-0" required>
                     </div>
                                         
                     <div class="form-group">
                         <label for="password">Password:</label>
-                        <input [(ngModel)]="loginUserData.password" name="password" type="password" placeholder="Enter Password" class="form-control rounded-0" required>
+                        <input name="password" type="password" placeholder="Enter Password" class="form-control rounded-0" required>
                     </div>
-                    
-                    <button (click)="loginUser()" class="btn btn-primary float-right">Log In</button>
                 </form>
             </div>
         
