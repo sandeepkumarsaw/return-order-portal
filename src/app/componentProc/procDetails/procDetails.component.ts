@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { ComponentProcService } from '../componentProc.service';
 
 @Component({
@@ -9,19 +11,10 @@ import { ComponentProcService } from '../componentProc.service';
 })
 export class ProcDetailsComponent implements OnInit {
   
-  dispProcDetails = true;
+  dispProcDetails = true
+  completeProcRes = ""
 
-  procDetailsData = {
-    name: null,
-    contactNumber: null,
-    creditCardNumber: null,
-    isPriorityRequest: false,
-    componentDetail: {
-      componentType: null,
-      componentName: null,
-      quantity: null
-    }
-  }
+  procDetailsForm: FormGroup
 
   procDetailsRes = {
     requestId: null,
@@ -37,15 +30,47 @@ export class ProcDetailsComponent implements OnInit {
     processingCharge: null
   }
 
-  completeProcRes = "";
+  constructor(private _compProcD: ComponentProcService, private _formBuil: FormBuilder, private _router: Router) {}
 
-  constructor(private _compProcD: ComponentProcService, private _router: Router) { }
+  ngOnInit(): void {
+    
+    this.procDetailsForm = this._formBuil.group({
+      name: [null, [Validators.pattern(/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/), Validators.required]],
+      contactNumber: [null, [Validators.pattern(/((\+*)((0[ -]*)*|((91 )*))((\d{12})+|(\d{10})+))|\d{5}([- ]*)\d{6}/), Validators.required]],
+      creditCardNumber: [null, [Validators.maxLength(10), Validators.required]],
+      creditLimit: [1000, [Validators.min(1), Validators.required]],
+      isPriorityRequest: [false],
+      
+      componentDetail: this._formBuil.group({
+        componentType: ["Accessory"],
+        componentName: [null, Validators.required],
+        quantity: [1, Validators.min(1)]
+      })
+    })
+  }
 
-  ngOnInit(): void {}
+  postprocDetailsForm() {
 
-  postprocDetailsData() {
-    console.log(this.procDetailsData)
-    this._compProcD.sendProcessDetailData(this.procDetailsData)
+    console.log(this.procDetailsForm)
+
+    if(!this.procDetailsForm.valid) { return }
+    
+    let procDetailsObject = {
+      name: this.procDetailsForm.get('name').value,
+      contactNumber: this.procDetailsForm.get('contactNumber').value,
+      creditCardNumber: this.procDetailsForm.get('creditCardNumber').value,
+      isPriorityRequest: this.procDetailsForm.get('isPriorityLimit').value,
+      
+      componentDetail: {
+        componentType: this.procDetailsForm.get('componentDetail').get('componentType').value,
+        componentName: this.procDetailsForm.get('componentDetail').get('componentName').value,
+        quantity: this.procDetailsForm.get('componentDetail').get('quantity').value
+      }
+    }
+
+    console.log(procDetailsObject)
+    
+    this._compProcD.sendProcessDetailData(procDetailsObject)
       .subscribe(
         res => {
           console.log(res)
@@ -54,7 +79,6 @@ export class ProcDetailsComponent implements OnInit {
           this.procDetailsRes.packagingAndDeliveryCharge = res.packagingAndDeliveryCharge
           this.procDetailsRes.dateOfDelivery = res.dateOfDelivery
           this.dispProcDetails = false
-          // this._router.navigate([''])
         },
       err => console.log(err)
     )
@@ -62,7 +86,7 @@ export class ProcDetailsComponent implements OnInit {
 
   postCompleteProcDetails() {
     this.completeProcDetails.requestId = this.procDetailsRes.requestId
-    this.completeProcDetails.creditCardNumber  = this.procDetailsData.creditCardNumber
+    this.completeProcDetails.creditCardNumber  = this.procDetailsForm.get('creditCardNumber').value
     this.completeProcDetails.processingCharge = this.procDetailsRes.processingCharge
 
     console.log(this.completeProcDetails)
@@ -72,7 +96,6 @@ export class ProcDetailsComponent implements OnInit {
         res => {
           console.log(res)
           this.completeProcRes = res.res
-          // this._router.navigate([''])
         },
       err => console.log(err)
     )

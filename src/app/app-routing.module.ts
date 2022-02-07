@@ -5,11 +5,12 @@ import { LoginComponent } from './loginAuth/login/login.component';
 import { ProcDetailsComponent } from './componentProc/procDetails/procDetails.component';
 
 import { AuthGuard } from './loginAuth/auth.guard';
+import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -20,6 +21,15 @@ const routes: Routes = [
     path: 'comp-proc',
     component: ProcDetailsComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: '404',
+    component: PageNotFoundComponent
+  },
+  {
+    path: "**",
+    redirectTo: '404',
+    pathMatch: "full"
   }
 ];
 

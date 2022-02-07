@@ -18,7 +18,12 @@ export class LoginComponent implements OnInit {
 
   constructor(private _auth: AuthService, private _router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(this._auth.isUserLoggedIn())
+    {
+     this._router.navigate(['comp-proc'])
+    }
+  }
 
   loginUser() {
     console.log(this.loginUserData)
@@ -28,7 +33,7 @@ export class LoginComponent implements OnInit {
           console.log(res)
           localStorage.setItem('username', res.userId)
           localStorage.setItem('token', res.token)
-          this._router.navigate(['component-processing'])
+          this._router.navigate(['comp-proc'])
         },
       err => {
         console.log(err)

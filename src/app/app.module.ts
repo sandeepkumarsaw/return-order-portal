@@ -7,10 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginAuthModule } from './loginAuth/loginAuth.module';
 import { ComponentProcModule } from './componentProc/componentProc.module';
+import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
