@@ -1,4 +1,4 @@
-<div class="row pt-5">
+<div class="container row">
     <div class="col-md-6 mx-auto">
         <div class="card rounded-0">
             <div class="card-header">
@@ -8,16 +8,20 @@
             <div class="card-body">
                 <form class="form">
                     <div class="form-group">
-                        <label for="username">Username:</label>
+                        <label class="form-label font-weight-bold" for="username">Username:</label>
                         <input [(ngModel)]="loginUserData.username" name="username" type="text" placeholder="Enter Username" class="form-control rounded-0" required>
                     </div>
                                         
                     <div class="form-group">
-                        <label for="password">Password:</label>
+                        <label class="form-label font-weight-bold" for="password">Password:</label>
                         <input [(ngModel)]="loginUserData.password" name="password" type="password" placeholder="Enter Password" class="form-control rounded-0" required>
                     </div>
                     
-                    <button (click)="loginUser()" class="btn btn-primary float-right">Log In</button>
+                    <div [hidden] = "!dispErrText" class=" text-center">
+                        <p class="form-label font-weight-bold text-danger" for="completeProcRes">Wrong Credentials!</p>
+                    </div>
+
+                    <button (click)="loginUser()" class="btn btn-primary float-right font-weight-bold">Log In</button>
                 </form>
             </div>
         

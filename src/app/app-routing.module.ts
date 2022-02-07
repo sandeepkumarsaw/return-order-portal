@@ -17,7 +17,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'proc-details',
+    path: 'comp-proc',
     component: ProcDetailsComponent,
     canActivate: [AuthGuard]
   }

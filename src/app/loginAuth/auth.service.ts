@@ -13,7 +13,7 @@ export class AuthService {
               private _router: Router) {}
 
   loginUser(user: any) {
-    return this.http.post<any>(this._loginURL, user, {headers: new HttpHeaders({"Content-Type": "application/json"})})
+    return this.http.post<any>( this._loginURL, user, { headers: new HttpHeaders({ "Content-Type": "application/json" }) } )
   }
 
   isUserLoggedIn() {
@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   logoutUser() {
-    localStorage.removeItem("token");
-    this._router.navigate(["/login"]);
+    localStorage.clear()
+    this._router.navigate(['login'])
   }
 }

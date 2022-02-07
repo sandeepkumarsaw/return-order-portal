@@ -3,17 +3,17 @@
         <form class="form">
             <div class="card rounded-1">
                 <div class="card-header">
-                    <h3 class="mb-0">Component Processing</h3>
+                    <h3 class="mb-0">Enter Component Processing Details</h3>
                 </div>
 
                 <div class="card-body">
                     <div class="form-group">
-                        <label class="form-label" for="name">Name:</label>
-                        <input [(ngModel)]="procDetailsData.name" name="name" type="text" placeholder="FirstName LastName" class="form-control rounded-1" maxlength="70" required>
+                        <label class="form-label font-weight-bold" for="name">Name:</label>
+                        <input [(ngModel)]="procDetailsData.name" name="name" type="text" class="form-control rounded-1" maxlength="70" required>
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label" for="contactNumber">Contact Number:</label>
+                        <label class="form-label font-weight-bold" for="contactNumber">Contact Number:</label>
                         <input [(ngModel)]="procDetailsData.contactNumber" name="contactNumber" type="tel" pattern="/((\+*)((0[ -]*)*|((91 )*))((\d{12})+|(\d{10})+))|\d{5}([- ]*)\d{6}/" class="form-control rounded-1" required>
                     </div>
                 </div>
@@ -22,12 +22,12 @@
             <div class="card rounded-1">
                 <div class="card-body">
                     <div class="form-group">
-                        <label class="form-label" for="creditCardDetails">Credit Card Number:</label>
+                        <label class="form-label font-weight-bold" for="creditCardDetails">Credit Card Number:</label>
                         <input [(ngModel)]="procDetailsData.creditCardNumber" name="creditCardNumber" type="password" id="creditCardNumber" class="form-control rounded-1" maxlength="12"/>
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label" for="creditLimit">Credit Limit:</label>
+                        <label class="form-label font-weight-bold" for="creditLimit">Credit Limit:</label>
                         <input [(ngModel)]="completeProcDetails.creditLimit" name="creditLimit" type="number" id="creditLimit" class="form-control rounded-1" maxlength="12"/>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
             <div class="card rounded-1">
                 <div class="card-body">
                     <div class="form-group">
-                        <p class="form-label" for="componentDetail">Defective Component Type:</p>
+                        <p class="form-label font-weight-bold" for="componentDetail">Defective Component Type:</p>
                         <label class="form-label" for="componentType">Type:</label>
                         <br>
                         <select [(ngModel)]="procDetailsData.componentDetail.componentType" name="componentType" class="form-select rounded-1">
@@ -47,7 +47,7 @@
                     </div>
                     
                     <div [hidden] = "procDetailsData.componentDetail.componentType != 'IntegralItem'" class="form-group">
-                        <label class="form-label" for="isPriorityRequest">Priority Request?</label>
+                        <label class="form-label font-weight-bold" for="isPriorityRequest">Priority Request?</label>
                         <div class="form-check">
                             <input [(ngModel)]="procDetailsData.isPriorityRequest" class="form-check-input rounded-1" name="isPriorityRequest" type="checkbox" value="true" id="flexCheckDefault">
                             <label class="form-check-label" for="priorityYes">
@@ -57,12 +57,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="componentName">Name:</label>
+                        <label class="form-label font-weight-bold" for="componentName">Name:</label>
                         <input [(ngModel)]="procDetailsData.componentDetail.componentName" name="componentName" type="text" class="form-control rounded-1" maxlength="25" required>
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label" for="quantity">Quantity:</label>
+                        <label class="form-label font-weight-bold" for="quantity">Quantity:</label>
                         <input [(ngModel)]="procDetailsData.componentDetail.quantity" name="quantity" type="number" class="form-control rounded-1 col-3" value="1"/>
                     </div>
                 </div>
@@ -83,28 +83,28 @@
         </div>
 
         <div class="card-body">
-            <p class="form-label" for="requestId">Name: {{ procDetailsData.name }}</p>
+            <p class="form-label font-weight-bold" for="requestId">Name: {{ procDetailsData.name }}</p>
             
-            <p class="form-label" for="requestId">Contact Number: {{ procDetailsData.contactNumber }}</p>
+            <p class="form-label font-weight-bold" for="requestId">Contact Number: {{ procDetailsData.contactNumber }}</p>
             
-            <p class="form-label" for="requestId">Credit Card Number: {{ procDetailsData.creditCardNumber }}</p>
+            <p class="form-label font-weight-bold" for="requestId">Credit Card Number: {{ procDetailsData.creditCardNumber }}</p>
             
-            <p class="form-label" for="requestId">Priority Request?: {{ procDetailsData.isPriorityRequest }}</p>
+            <p class="form-label font-weight-bold" for="requestId">Priority Request?: {{ procDetailsData.isPriorityRequest }}</p>
             
-            <p class="form-label" for="requestId">Component Type: {{ procDetailsData.componentDetail.componentType }}</p>
+            <p class="form-label font-weight-bold" for="requestId">Component Type: {{ procDetailsData.componentDetail.componentType }}</p>
             
-            <p class="form-label" for="requestId">Component Name: {{ procDetailsData.componentDetail.componentName }}</p>
+            <p class="form-label font-weight-bold" for="requestId">Component Name: {{ procDetailsData.componentDetail.componentName }}</p>
             
-            <p class="form-label" for="requestId">Quantity: {{ procDetailsData.componentDetail.quantity }}</p>
+            <p class="form-label font-weight-bold" for="requestId">Quantity: {{ procDetailsData.componentDetail.quantity }}</p>
             
-            <p class="form-label" for="processingCharge">Processing Charge: {{ procDetailsRes.processingCharge }}</p>
+            <p class="form-label font-weight-bold" for="processingCharge">Processing Charge: {{ procDetailsRes.processingCharge }}</p>
             
-            <p class="form-label" for="packagingAndDeliveryCharge">Packaging And Delivery Charge: {{ procDetailsRes.packagingAndDeliveryCharge }}</p>
+            <p class="form-label font-weight-bold" for="packagingAndDeliveryCharge">Packaging And Delivery Charge: {{ procDetailsRes.packagingAndDeliveryCharge }}</p>
             
-            <p class="form-label" for="dateOfDelivery">Date Of Delivery: {{ procDetailsRes.dateOfDelivery }}</p>
+            <p class="form-labe font-weight-boldl" for="dateOfDelivery">Date Of Delivery: {{ procDetailsRes.dateOfDelivery }}</p>
             <br/>
             
-            <button (click)="postCompleteProcDetails()" class="btn btn-primary float-right">Confirm</button>
+            <button (click)="postCompleteProcDetails()" class="btn btn-primary font-weight-bold float-right">Confirm</button>
         </div>
         
         <div [hidden] = "dispProcDetails" class=" text-center">

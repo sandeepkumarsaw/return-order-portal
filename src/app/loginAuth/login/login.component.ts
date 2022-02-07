@@ -9,6 +9,8 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  dispErrText = false
+  errText: any
   loginUserData = {
     username: null,
     password: null
@@ -26,9 +28,13 @@ export class LoginComponent implements OnInit {
           console.log(res)
           localStorage.setItem('username', res.userId)
           localStorage.setItem('token', res.token)
-          this._router.navigate(['proc-details'])
+          this._router.navigate(['component-processing'])
         },
-      err => console.log(err)
+      err => {
+        console.log(err)
+        this.errText = err.statusText
+        this.dispErrText = true
+      }
     )
   }
 }

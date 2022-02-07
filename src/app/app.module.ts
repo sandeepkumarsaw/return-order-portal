@@ -5,9 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthModule } from './loginAuth/auth.module';
+import { LoginAuthModule } from './loginAuth/loginAuth.module';
 import { ComponentProcModule } from './componentProc/componentProc.module';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -18,10 +17,10 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    AuthModule,
+    LoginAuthModule,
     ComponentProcModule
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
