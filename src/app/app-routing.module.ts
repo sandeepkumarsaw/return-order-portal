@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { LoginComponent } from './loginAuth/login/login.component';
 import { ProcDetailsComponent } from './componentProc/procDetails/procDetails.component';
+
+import { AuthGuard } from './loginAuth/auth.guard';
 
 const routes: Routes = [
   {
@@ -15,7 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'proc-details',
-    component: ProcDetailsComponent
+    component: ProcDetailsComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

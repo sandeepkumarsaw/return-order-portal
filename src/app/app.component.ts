@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { AuthService } from './loginAuth/auth.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'return-order-portal';
+
+  constructor(public _authService: AuthService) {}
 }
