@@ -6,8 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ComponentProcService {
 
-  private _componentProcURL = "https://component-processing.azurewebsites.net/api/ProcessDetail";
-  private _completeProcURL = "https://component-processing.azurewebsites.net/api/CompleteProcessing";
+  private _componentProcURL = "https://componentproject.azurewebsites.net/api/ProcessDetail";
+  private _completeProcURL = "https://componentproject.azurewebsites.net/api/CompleteProcessing";
   
   constructor(private http: HttpClient) { }
 

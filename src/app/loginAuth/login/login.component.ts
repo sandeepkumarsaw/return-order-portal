@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
           console.log(res)
           localStorage.setItem('username', res.userId)
           localStorage.setItem('token', res.token)
-          this._router.navigate(['comp-proc'])
+          this._router.navigate(['home-page'])
         },
       err => {
         console.log(err)

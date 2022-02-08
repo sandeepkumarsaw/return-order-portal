@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { LandingPageComponent } from './landingPage/landingPage.component';
+import { HomePageComponent } from './homePage/homePage.component';
 import { LoginComponent } from './loginAuth/login/login.component';
 import { ProcDetailsComponent } from './componentProc/procDetails/procDetails.component';
-import { LandingPageComponent } from './landingPage/landingPage.component';
+import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 
 import { AuthGuard } from './loginAuth/auth.guard';
-import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 
 const routes: Routes = [
   {
@@ -19,11 +20,16 @@ const routes: Routes = [
     component: LandingPageComponent
   },
   {
+    path: 'home-page',
+    component: HomePageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
   {
-    path: 'comp-proc',
+    path: 'return-portal',
     component: ProcDetailsComponent,
     canActivate: [AuthGuard]
   },

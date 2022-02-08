@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  private _loginURL = "https://authrization.azurewebsites.net/api/Authentication/login";
+  private _loginURL = "https://authorizationorder.azurewebsites.net/api/Authentication/login";
   
   constructor(private http: HttpClient,
               private _router: Router) {}
@@ -22,6 +22,6 @@ export class AuthService {
 
   logoutUser() {
     localStorage.clear()
-    this._router.navigate(['login'])
+    this._router.navigate(['landing-page'])
   }
 }

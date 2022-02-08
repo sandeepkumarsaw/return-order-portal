@@ -7,15 +7,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { LandingPageComponent } from './landingPage/landingPage.component';
+import { HomePageComponent } from './homePage/homePage.component';
 import { LoginAuthModule } from './loginAuth/loginAuth.module';
 import { ComponentProcModule } from './componentProc/componentProc.module';
 import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,172 +1,173 @@
-<div class="custom-bg">
-    <div class="container row pt-5">
-        <div [hidden]="!dispProcDetails" class="col-md-4 mx-auto">
-            <form [formGroup]="procDetailsForm" class="form">
-                <div class="card rounded-1">
-                    <div class="card-header">
-                        <h3 class="mb-0">User Details</h3>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label class="form-label font-weight-bold">Name</label>
-                            <input formControlName="name" type="text" placeholder="Jason Doe" class="form-control rounded-1"/>
-                            <p class="form-label alert-danger font-weight-light font-italic float-right" *ngIf="procDetailsForm.get('name').touched && !procDetailsForm.get('name').valid">Invalid Name!</p>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label font-weight-bold">Contact Number</label>
-                            <input formControlName="contactNumber" type="number" class="form-control rounded-1"/>
-                            <p class="form-label alert-danger font-weight-light font-italic float-right" *ngIf="procDetailsForm.get('contactNumber').touched && !procDetailsForm.get('contactNumber').valid">Invalid Contact Number!</p>
-                        </div>
-                    </div>
-                </div>
-                <br/>
-                <div class="card rounded-1">
-                    <div class="card-header">
-                        <h3 class="mb-0">Credit Card Details</h3>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label class="form-label font-weight-bold">Credit Card Type</label>
-                            <input formControlName="creditCardNumber" type="password" class="form-control rounded-1"/>
-                            <p class="form-label alert-danger font-weight-light font-italic float-right" *ngIf="procDetailsForm.get('creditCardNumber').touched && !procDetailsForm.get('creditCardNumber').valid">Invalid Credit Card Number!</p>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label font-weight-bold">Name (As on the card)</label>
-                            <input type="text" placeholder="Jason Doe" class="form-control"/>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label font-weight-bold">Card Number</label>
-                            <input type="number" class="form-control">
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-sm-8">
-                                <div class="form-group">
-                                    <label class="form-label font-weight-bold">Expiration</label>
-                                    <div class="input-group">
-                                        <input type="number" placeholder="MM" class="form-control">
-                                        <input type="number" placeholder="YY" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-sm-4">
-                                <div class="form-group mb-4">
-                                    <label class="form-label font-weight-bold">CVV</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label font-weight-bold" for="creditLimit">Credit Limit:</label>
-                            <input formControlName="creditLimit" type="number" class="form-control rounded-1"/>
-                            <p class="form-label alert-danger font-weight-light font-italic float-right" *ngIf="procDetailsForm.get('creditLimit').touched && !procDetailsForm.get('creditLimit').valid">Invalid Credit Limit!</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <br/>
-
-                <div class="card rounded-1">
-                    <div class="card-header">
-                        <h3 class="mb-0">Exchange Details</h3>
-                    </div>
-                    <div formGroupName="componentDetail" class="card-body">
-                        <div class="form-group">
-                            <label class="form-label form-select-lg mb-3 font-weight-bold">Component Type:</label>
-                            <select formControlName="componentType" class="browser-default custom-select">
-                                <option value="Accessory" selected>Accessory</option>
-                                <option value="ProtectiveSheath">Protective Sheath</option>
-                                <option value="IntegralItem">Integral Item</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label font-weight-bold" for="componentName">Component Name:</label>
-                            <input formControlName="componentName" type="text" class="form-control rounded-1">
-                            <p class="form-label alert-danger font-weight-light font-italic float-right" *ngIf="procDetailsForm.get('componentDetail').get('componentName').touched && !procDetailsForm.get('componentDetail').get('componentName').valid">Invalid Component Name!</p>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label font-weight-bold" for="quantity">Component Quantity:</label>
-                            <input formControlName="quantity" type="number" class="form-control rounded-1 col-3"/>
-                        </div>
-                    </div>
-                </div>
-                
-                <div [hidden]="procDetailsForm.get('componentDetail').get('componentType').value != 'IntegralItem'" class="card rounded-1">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label class="form-label font-weight-bold" for="isPriorityRequest">Priority Request?</label>
-                            <div class="form-check">
-                                <input formControlName="isPriorityRequest" class="form-check-input rounded-1" type="checkbox" value="true"/>
-                                <label class="form-check-label font-weight-bold">Yes</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card rounded-1">
-                    <div class="card-body">
-                        <button type="reset" class="btn btn-dark btn-lg col-md-5">Clear</button>
-                        <button (click)="postprocDetailsForm()" class="btn btn-dark btn-lg col-md-5 float-right">Submit</button>
-                    </div>
-                </div>
-                <br/><br/>
-            </form>
-        </div>
-
-        <div [hidden]="dispProcDetails" class="col-md-8 mx-auto">
+<div class="container row pt-5">
+    <div [hidden]="!dispProcDetails" class="col-md-4">
+        <form [formGroup]="procDetailsForm" class="form">
             <div class="card rounded-1">
                 <div class="card-header">
-                    <h3 class="mb-0">Process Details</h3>
+                    <h3 class="mb-0">User Details</h3>
                 </div>
 
                 <div class="card-body">
-                    <p class="form-label font-weight-bold" for="requestId">Name: {{ procDetailsForm.get('name').value }}</p>
+                    <div class="form-group">
+                        <label class="form-label font-weight-bold">Name</label>
+                        <input formControlName="name" type="text" placeholder="Jason Doe" class="form-control rounded-1"/>
+                        <p class="form-label alert-danger font-weight-light font-italic float-right" *ngIf="procDetailsForm.get('name').touched && !procDetailsForm.get('name').valid">Invalid Name!</p>
+                    </div>
                     
-                    <p class="form-label font-weight-bold" for="requestId">Contact Number: {{ procDetailsForm.get('contactNumber').value }}</p>
+                    <div class="form-group">
+                        <label class="form-label font-weight-bold">Contact Number</label>
+                        <input formControlName="contactNumber" type="number" class="form-control rounded-1"/>
+                        <p class="form-label alert-danger font-weight-light font-italic float-right" *ngIf="procDetailsForm.get('contactNumber').touched && !procDetailsForm.get('contactNumber').valid">Invalid Contact Number!</p>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="card rounded-1">
+                <div class="card-header">
+                    <h3 class="mb-0">Credit Card Details</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="form-label font-weight-bold">Credit Card Type</label>
+                        <select formControlName="creditCardNumber" class="form-control rounded-1">
+                            <option value="admincard">Admin Card</option>
+                            <option value="usercard">User Card</option>
+                        </select>
+                    </div>
                     
-                    <p class="form-label font-weight-bold" for="requestId">Credit Card Number: {{ procDetailsForm.get('creditCardNumber').value }}</p>
+                    <div class="form-group">
+                        <label class="form-label font-weight-bold">Name (As on the card)</label>
+                        <input type="text" placeholder="Jason Doe" class="form-control"/>
+                    </div>
                     
-                    <p class="form-label font-weight-bold" for="requestId">Priority Request?: {{ procDetailsForm.get('isPriorityRequest').value?'Yes':'No' }}</p>
+                    <div class="form-group">
+                        <label class="form-label font-weight-bold">Card Number</label>
+                        <input type="number" class="form-control">
+                    </div>
                     
-                    <p class="form-label font-weight-bold" for="requestId">Component Type: {{ procDetailsForm.get('componentDetail').get('componentType').value }}</p>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <label class="form-label font-weight-bold">Expiration</label>
+                                <div class="input-group">
+                                    <input type="number" placeholder="MM" class="form-control">
+                                    <input type="number" placeholder="YY" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-4">
+                            <div class="form-group mb-4">
+                                <label class="form-label font-weight-bold">CVV</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label font-weight-bold" for="creditLimit">Credit Limit:</label>
+                        <input formControlName="creditLimit" type="number" class="form-control rounded-1"/>
+                        <p class="form-label alert-danger font-weight-light font-italic float-right" *ngIf="procDetailsForm.get('creditLimit').touched && !procDetailsForm.get('creditLimit').valid">Invalid Credit Limit!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <br/>
+
+            <div class="card rounded-1">
+                <div class="card-header">
+                    <h3 class="mb-0">Exchange Details</h3>
+                </div>
+                <div formGroupName="componentDetail" class="card-body">
+                    <div class="form-group">
+                        <label class="form-label form-select-lg mb-3 font-weight-bold">Component Type:</label>
+                        <select formControlName="componentType" class="browser-default custom-select">
+                            <option value="Accessory" selected>Accessory</option>
+                            <option value="ProtectiveSheath">Protective Sheath</option>
+                            <option value="IntegralItem">Integral Item</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label font-weight-bold" for="componentName">Component Name:</label>
+                        <input formControlName="componentName" type="text" class="form-control rounded-1">
+                        <p class="form-label alert-danger font-weight-light font-italic float-right" *ngIf="procDetailsForm.get('componentDetail').get('componentName').touched && !procDetailsForm.get('componentDetail').get('componentName').valid">Invalid Component Name!</p>
+                    </div>
                     
-                    <p class="form-label font-weight-bold" for="requestId">Component Name: {{ procDetailsForm.get('componentDetail').get('componentName').value }}</p>
-                    
-                    <p class="form-label font-weight-bold" for="requestId">Quantity: {{ procDetailsForm.get('componentDetail').get('quantity').value }}</p>
-                    
-                    <p class="form-label font-weight-bold" for="processingCharge">Processing Charge: {{ procDetailsRes.processingCharge }}</p>
-                    
-                    <p class="form-label font-weight-bold" for="packagingAndDeliveryCharge">Packaging And Delivery Charge: {{ procDetailsRes.packagingAndDeliveryCharge }}</p>
-                    
-                    <p class="form-labe font-weight-bold" for="dateOfDelivery">Date Of Delivery: {{ procDetailsRes.dateOfDelivery  }}</p>
-                    <br/>
-                    
-                    <!--
-                        <button (click)="postCompleteProcDetails()" class="btn btn-dark btn-lg btn-block">Confirm</button>
-                    -->
+                    <div class="form-group">
+                        <label class="form-label font-weight-bold" for="quantity">Component Quantity:</label>
+                        <input formControlName="quantity" type="number" class="form-control rounded-1 col-3"/>
+                    </div>
+                </div>
+            </div>
+            
+            <div [hidden]="procDetailsForm.get('componentDetail').get('componentType').value != 'IntegralItem'" class="card rounded-1">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="form-label font-weight-bold" for="isPriorityRequest">Priority Request?</label>
+                        <div class="form-check">
+                            <input formControlName="isPriorityRequest" class="form-check-input rounded-1" type="checkbox" value="true"/>
+                            <label class="form-check-label font-weight-bold">Yes</label>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="card rounded-1">
                 <div class="card-body">
                     <button type="reset" class="btn btn-dark btn-lg col-md-5">Clear</button>
-                    <button (click)="postCompleteProcDetails()" class="btn btn-dark btn-lg col-md-5 float-right">Submit</button>
+                    <button (click)="postprocDetailsForm()" class="btn btn-dark btn-lg col-md-5 float-right">Submit</button>
                 </div>
+            </div>
+            <br/><br/>
+        </form>
+    </div>
+
+    <div [hidden]="dispProcDetails" class="col-md-3">
+        <div class="card rounded-1">
+            <div class="card-header">
+                <h3 class="mb-0">Confirm Return Details</h3>
+            </div>
+
+            <div class="card-body">
+                <p class="form-label font-weight-bold">Name: {{ procDetailsForm.get('name').value }}</p>
+                
+                <p class="form-label font-weight-bold">Contact Number: {{ procDetailsForm.get('contactNumber').value }}</p>
+                
+                <p class="form-label font-weight-bold">Credit Card Number: {{ procDetailsForm.get('creditCardNumber').value }}</p>
+                
+                <p class="form-label font-weight-bold">Priority Request?: {{ procDetailsForm.get('isPriorityRequest').value?'Yes':'No' }}</p>
+                
+                <p class="form-label font-weight-bold">Component Type: {{ procDetailsForm.get('componentDetail').get('componentType').value }}</p>
+                
+                <p class="form-label font-weight-bold">Component Name: {{ procDetailsForm.get('componentDetail').get('componentName').value }}</p>
+                
+                <p class="form-label font-weight-bold">Quantity: {{ procDetailsForm.get('componentDetail').get('quantity').value }}</p>
+                
+                <p class="form-label font-weight-bold">Processing Charge: {{ procDetailsRes.processingCharge }}</p>
+                
+                <p class="form-label font-weight-bold">Packaging And Delivery Charge: {{ procDetailsRes.packagingAndDeliveryCharge }}</p>
+                
+                <p class="form-labe font-weight-bold">Date Of Delivery: {{ procDetailsRes.dateOfDelivery|date:'mediumDate' }}</p>
+                <br/>
+            </div>
+        </div>
+
+        <div [hidden]="completeProcRes" class="card rounded-1">
+            <div class="card-body">
+                <button type="reset" class="btn btn-dark btn-lg col-md-5">Clear</button>
+                <button (click)="postCompleteProcDetails()" class="btn btn-dark btn-lg col-md-5 float-right">Submit</button>
+            </div>
+        </div>
+        <div [hidden]="!completeProcRes" class="card rounded-1">
+            <div class="card-body">
+                <button class="btn btn-dark btn-lg col-md-5" routerLink="landing-page">Homepage</button>
             </div>
         </div>
         
         <br/>
-        <div [hidden]="dispProcDetails" class="text-center mx-auto">
-            <p class="alert" for="completeProcRes">{{ completeProcRes }}</p>
+        <div [hidden]="!completeProcRes" class="alert alert-primary text-center" role="alert">
+            {{ completeProcRes }}
         </div>
     </div>
 </div>

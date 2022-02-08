@@ -1,20 +1,8 @@
 .container{
-    height: 100vh; 
-    display: flex; 
-    align-items: center; 
+    margin-top: 6vh;
+    height: 94vh;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
     justify-content: center;
-}
-
-.bg-img {
-  background-image: url('/assets/bg.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: auto;
-  opacity: 0.87;
-  min-width: 100%;
-  margin-top: 5vh;
-  height: 95vh;
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
 }
