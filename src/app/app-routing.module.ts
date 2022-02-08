@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './loginAuth/login/login.component';
 import { ProcDetailsComponent } from './componentProc/procDetails/procDetails.component';
+import { LandingPageComponent } from './landingPage/landingPage.component';
 
 import { AuthGuard } from './loginAuth/auth.guard';
 import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
@@ -10,8 +11,12 @@ import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'landing-page',
     pathMatch: 'full'
+  },
+  {
+    path: 'landing-page',
+    component: LandingPageComponent
   },
   {
     path: 'login',

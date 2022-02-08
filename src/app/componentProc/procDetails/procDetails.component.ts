@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -9,6 +9,7 @@ import { ComponentProcService } from '../componentProc.service';
   templateUrl: './procDetails.component.html',
   styleUrls: ['./procDetails.component.css']
 })
+
 export class ProcDetailsComponent implements OnInit {
   
   dispProcDetails = true
@@ -55,11 +56,11 @@ export class ProcDetailsComponent implements OnInit {
 
     if(!this.procDetailsForm.valid) { return }
     
-    let procDetailsObject = {
+    let procDetailsObj = {
       name: this.procDetailsForm.get('name').value,
       contactNumber: this.procDetailsForm.get('contactNumber').value,
       creditCardNumber: this.procDetailsForm.get('creditCardNumber').value,
-      isPriorityRequest: this.procDetailsForm.get('isPriorityLimit').value,
+      isPriorityRequest: this.procDetailsForm.get('isPriorityRequest').value,
       
       componentDetail: {
         componentType: this.procDetailsForm.get('componentDetail').get('componentType').value,
@@ -68,9 +69,9 @@ export class ProcDetailsComponent implements OnInit {
       }
     }
 
-    console.log(procDetailsObject)
+    console.log(procDetailsObj)
     
-    this._compProcD.sendProcessDetailData(procDetailsObject)
+    this._compProcD.sendProcessDetailData(procDetailsObj)
       .subscribe(
         res => {
           console.log(res)
@@ -87,6 +88,7 @@ export class ProcDetailsComponent implements OnInit {
   postCompleteProcDetails() {
     this.completeProcDetails.requestId = this.procDetailsRes.requestId
     this.completeProcDetails.creditCardNumber  = this.procDetailsForm.get('creditCardNumber').value
+    this.completeProcDetails.creditLimit  = this.procDetailsForm.get('creditLimit').value
     this.completeProcDetails.processingCharge = this.procDetailsRes.processingCharge
 
     console.log(this.completeProcDetails)
@@ -97,7 +99,10 @@ export class ProcDetailsComponent implements OnInit {
           console.log(res)
           this.completeProcRes = res.res
         },
-      err => console.log(err)
+      err => {
+        console.log(err)
+        this.completeProcRes = err.err.statusText
+      }
     )
   }
 }

@@ -1,30 +1,37 @@
-<div class="container row">
-    <div class="col-md-6 mx-auto">
-        <div class="card rounded-0">
-            <div class="card-header">
-                <h3 class="mb-0">Login</h3>
-            </div>
+<div class="bg-img">
+    <div class="container row">
+        <div class="col-md-3 mx-auto">
+            <div class="card border-dark rounded-1">
+                <div class="card-header text-white bg-dark border-dark">
+                    <h3 class="mb-0">Login</h3>
+                </div>
+                
+                <div class="card-body">
+                    <form [formGroup]="loginUserForm" class="form">
+                        <div class="form-group">
+                            <label class="form-label font-weight-bold">Username:</label>
+                            <input formControlName="username" type="text" class="form-control rounded-0">
+                            <p class="form-label alert-danger font-weight-light font-italic float-right" *ngIf="loginUserForm.get('username').touched && !loginUserForm.get('username').valid">Invalid Username!</p>
+                        </div>
+                                            
+                        <div class="form-group">
+                            <label class="form-label font-weight-bold" for="password">Password:</label>
+                            <input formControlName="password" type="password" class="form-control rounded-0">
+                            <p class="form-label alert-danger font-weight-light font-italic float-right" *ngIf="loginUserForm.get('password').touched && !loginUserForm.get('password').valid">Invalid Password!</p>
+                        
+                        </div>
+                        <br/>
+                        <button type="reset" class="btn btn-dark btn-lg col-md-5">Clear</button>
+                        <button (click)="loginUser()" class="btn btn-dark btn-lg col-md-5 float-right">Log In</button>
+                    </form>
+                </div>
             
-            <div class="card-body">
-                <form class="form">
-                    <div class="form-group">
-                        <label class="form-label font-weight-bold" for="username">Username:</label>
-                        <input [(ngModel)]="loginUserData.username" name="username" type="text" placeholder="Enter Username" class="form-control rounded-0" required>
-                    </div>
-                                        
-                    <div class="form-group">
-                        <label class="form-label font-weight-bold" for="password">Password:</label>
-                        <input [(ngModel)]="loginUserData.password" name="password" type="password" placeholder="Enter Password" class="form-control rounded-0" required>
-                    </div>
-                    
-                    <div [hidden] = "!dispErrText" class=" text-center">
-                        <p class="form-label font-weight-bold text-danger" for="completeProcRes">Wrong Credentials!</p>
-                    </div>
-
-                    <button (click)="loginUser()" class="btn btn-primary float-right font-weight-bold">Log In</button>
-                </form>
             </div>
-        
+            <br/>
+            <div [hidden] = "!dispErrText" class="text-center">
+                <p class="alert alert-danger">Wrong Credentials!</p>
+            </div>
+
         </div>
     </div>
 </div>

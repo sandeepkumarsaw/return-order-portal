@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { LandingPageComponent } from './landingPage/landingPage.component';
 import { LoginAuthModule } from './loginAuth/loginAuth.module';
 import { ComponentProcModule } from './componentProc/componentProc.module';
 import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
@@ -12,7 +14,8 @@ import { PageNotFoundComponent } from './pageNotFound/pageNotFound.component';
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
