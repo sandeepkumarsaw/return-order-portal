@@ -12,7 +12,7 @@ import { ComponentProcService } from '../componentProc.service';
 
 export class ProcDetailsComponent implements OnInit {
   
-  displayProcessDetails = false
+  displayProcessDetails = true
   completeProcessingResponse = ""
 
   procDetailsForm: FormGroup
