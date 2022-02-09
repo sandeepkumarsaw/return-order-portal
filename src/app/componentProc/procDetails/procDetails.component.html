@@ -1,5 +1,5 @@
 <div class="container row pt-5">
-    <div [hidden]="!dispProcDetails" class="col-md-4">
+    <div [hidden]="!displayProcessDetails" class="col-md-4">
         <form [formGroup]="procDetailsForm" class="form">
             <div class="card rounded-1">
                 <div class="card-header">
@@ -115,15 +115,16 @@
 
             <div class="card rounded-1">
                 <div class="card-body">
-                    <button type="reset" class="btn btn-dark btn-lg col-md-5">Clear</button>
-                    <button (click)="postprocDetailsForm()" class="btn btn-dark btn-lg col-md-5 float-right">Submit</button>
+                    <button (click)="postprocDetailsForm()" class="btn btn-dark btn-lg col-md-5">Submit</button>
+                    <button type="reset" class="btn btn-dark btn-lg col-md-5 float-right">Reset</button>
+                    
                 </div>
             </div>
             <br/><br/>
         </form>
     </div>
 
-    <div [hidden]="dispProcDetails" class="col-md-3">
+    <div [hidden]="displayProcessDetails" class="col-md-3">
         <div class="card rounded-1">
             <div class="card-header">
                 <h3 class="mb-0">Confirm Return Details</h3>
@@ -144,30 +145,30 @@
                 
                 <p class="form-label font-weight-bold">Quantity: {{ procDetailsForm.get('componentDetail').get('quantity').value }}</p>
                 
-                <p class="form-label font-weight-bold">Processing Charge: {{ procDetailsRes.processingCharge }}</p>
+                <p class="form-label font-weight-bold">Processing Charge: {{ processingDetailsResponse.processingCharge }}</p>
                 
-                <p class="form-label font-weight-bold">Packaging And Delivery Charge: {{ procDetailsRes.packagingAndDeliveryCharge }}</p>
+                <p class="form-label font-weight-bold">Packaging And Delivery Charge: {{ processingDetailsResponse.packagingAndDeliveryCharge }}</p>
                 
-                <p class="form-labe font-weight-bold">Date Of Delivery: {{ procDetailsRes.dateOfDelivery|date:'mediumDate' }}</p>
+                <p class="form-labe font-weight-bold">Date Of Delivery: {{ processingDetailsResponse.dateOfDelivery|date:'mediumDate' }}</p>
                 <br/>
             </div>
         </div>
 
-        <div [hidden]="completeProcRes" class="card rounded-1">
+        <div [hidden]="completeProcessingResponse" class="card rounded-1">
             <div class="card-body">
-                <button type="reset" class="btn btn-dark btn-lg col-md-5">Clear</button>
-                <button (click)="postCompleteProcDetails()" class="btn btn-dark btn-lg col-md-5 float-right">Submit</button>
+                <button (click)="postcompleteProcessingDetails()" class="btn btn-dark btn-lg col-md-5">Submit</button>
+                <button type="reset" class="btn btn-dark btn-lg col-md-5 float-right">Clear</button>
             </div>
         </div>
-        <div [hidden]="!completeProcRes" class="card rounded-1">
+        <div [hidden]="!completeProcessingResponse" class="card rounded-1">
             <div class="card-body">
-                <button class="btn btn-dark btn-lg col-md-5" routerLink="landing-page">Homepage</button>
+                <button class="btn btn-dark btn-lg col-md-5 float-right" routerLink="landing-page">Homepage</button>
             </div>
         </div>
         
         <br/>
-        <div [hidden]="!completeProcRes" class="alert alert-primary text-center" role="alert">
-            {{ completeProcRes }}
+        <div [hidden]="!completeProcessingResponse" class="alert alert-primary text-center" role="alert">
+            {{ completeProcessingResponse }}
         </div>
     </div>
 </div>

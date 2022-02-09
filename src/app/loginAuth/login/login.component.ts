@@ -12,8 +12,8 @@ import { AuthService } from '../auth.service';
 
 export class LoginComponent implements OnInit {
 
-  dispErrText = false
-  errText: any
+  displayErrorText = false
+  errorText: any
 
   loginUserForm: FormGroup
 
@@ -43,16 +43,16 @@ export class LoginComponent implements OnInit {
     
     this._auth.loginUser(loginUserObj)
       .subscribe(
-        res => {
-          console.log(res)
-          localStorage.setItem('username', res.userId)
-          localStorage.setItem('token', res.token)
+        response => {
+          console.log(response)
+          localStorage.setItem('username', response.userId)
+          localStorage.setItem('token', response.token)
           this._router.navigate(['home-page'])
         },
-      err => {
-        console.log(err)
-        this.errText = err.statusText
-        this.dispErrText = true
+      error => {
+        console.log(error)
+        this.errorText = error.statusText
+        this.displayErrorText = true
       }
     )
   }

@@ -20,14 +20,14 @@
                     
                     </div>
                     <br/>
-                    <button type="reset" class="btn btn-dark btn-lg col-md-5">Clear</button>
-                    <button (click)="loginUser()" class="btn btn-dark btn-lg col-md-5 float-right">Log In</button>
+                    <button (click)="loginUser()" class="btn btn-dark btn-lg col-md-5">Log In</button>
+                    <button type="reset" class="btn btn-dark btn-lg col-md-5 float-right">Reset</button>
                 </form>
             </div>
         
         </div>
         <br/>
-        <div [hidden] = "!dispErrText" class="alert alert-danger text-center" role="alert">
+        <div [hidden] = "!displayErrorText" class="alert alert-danger text-center" role="alert">
             Wrong Credentials!
         </div>
 

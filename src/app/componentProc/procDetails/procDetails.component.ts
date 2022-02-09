@@ -12,19 +12,19 @@ import { ComponentProcService } from '../componentProc.service';
 
 export class ProcDetailsComponent implements OnInit {
   
-  dispProcDetails = true
-  completeProcRes = ""
+  displayProcessDetails = false
+  completeProcessingResponse = ""
 
   procDetailsForm: FormGroup
 
-  procDetailsRes = {
+  processingDetailsResponse = {
     requestId: null,
     processingCharge: null,
     packagingAndDeliveryCharge: null,
     dateOfDelivery: null
   }
 
-  completeProcDetails = {
+  completeProcessingDetails = {
     requestId: null,
     creditCardNumber: null,
     creditLimit: null,
@@ -73,35 +73,35 @@ export class ProcDetailsComponent implements OnInit {
     
     this._compProcD.sendProcessDetailData(procDetailsObj)
       .subscribe(
-        res => {
-          console.log(res)
-          this.procDetailsRes.requestId = res.requestId
-          this.procDetailsRes.processingCharge = res.processingCharge
-          this.procDetailsRes.packagingAndDeliveryCharge = res.packagingAndDeliveryCharge
-          this.procDetailsRes.dateOfDelivery = res.dateOfDelivery
-          this.dispProcDetails = false
+        response => {
+          console.log(response)
+          this.processingDetailsResponse.requestId = response.requestId
+          this.processingDetailsResponse.processingCharge = response.processingCharge
+          this.processingDetailsResponse.packagingAndDeliveryCharge = response.packagingAndDeliveryCharge
+          this.processingDetailsResponse.dateOfDelivery = response.dateOfDelivery
+          this.displayProcessDetails = false
         },
-      err => console.log(err)
+      error => console.log(error)
     )
   }
 
-  postCompleteProcDetails() {
-    this.completeProcDetails.requestId = this.procDetailsRes.requestId
-    this.completeProcDetails.creditCardNumber  = this.procDetailsForm.get('creditCardNumber').value
-    this.completeProcDetails.creditLimit  = this.procDetailsForm.get('creditLimit').value
-    this.completeProcDetails.processingCharge = this.procDetailsRes.processingCharge
+  postcompleteProcessingDetails() {
+    this.completeProcessingDetails.requestId = this.processingDetailsResponse.requestId
+    this.completeProcessingDetails.creditCardNumber  = this.procDetailsForm.get('creditCardNumber').value
+    this.completeProcessingDetails.creditLimit  = this.procDetailsForm.get('creditLimit').value
+    this.completeProcessingDetails.processingCharge = this.processingDetailsResponse.processingCharge
 
-    console.log(this.completeProcDetails)
+    console.log(this.completeProcessingDetails)
     
-    this._compProcD.sendCompleteProcData(this.completeProcDetails)
+    this._compProcD.sendCompleteProcData(this.completeProcessingDetails)
       .subscribe(
-        res => {
-          console.log(res)
-          this.completeProcRes = res.res
+        response => {
+          console.log(response)
+          this.completeProcessingResponse = response.response
         },
-      err => {
-        console.log(err)
-        this.completeProcRes = err.err.statusText
+      error => {
+        console.log(error)
+        this.completeProcessingResponse = error.error.statusText
       }
     )
   }
