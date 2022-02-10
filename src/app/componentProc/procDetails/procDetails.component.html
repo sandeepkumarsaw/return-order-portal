@@ -126,32 +126,32 @@
         </form>
     </div>
 
-    <div [hidden]="displayProcessDetails" class="col-md-3">
+    <div [hidden]="displayProcessDetails" class="col-md-4">
         <div class="card rounded-1">
             <div class="card-header">
                 <h3 class="mb-0">Confirm Return Details</h3>
             </div>
 
             <div class="card-body">
-                <p class="form-label font-weight-bold">Name: {{ procDetailsForm.get('name').value }}</p>
+                <h5 class="form-label my-3">Name: {{ procDetailsForm.get('name').value }}</h5>
                 
-                <p class="form-label font-weight-bold">Contact Number: {{ procDetailsForm.get('contactNumber').value }}</p>
+                <h5 class="form-label my-3">Contact Number: {{ procDetailsForm.get('contactNumber').value }}</h5>
                 
-                <p class="form-label font-weight-bold">Credit Card Number: {{ procDetailsForm.get('creditCardNumber').value }}</p>
+                <h5 class="form-label my-3">Credit Card Number: {{ procDetailsForm.get('creditCardNumber').value }}</h5>
                 
-                <p class="form-label font-weight-bold">Priority Request?: {{ procDetailsForm.get('isPriorityRequest').value?'Yes':'No' }}</p>
+                <h5 class="form-label my-3">Priority Request?: {{ procDetailsForm.get('isPriorityRequest').value?'Yes':'No' }}</h5>
                 
-                <p class="form-label font-weight-bold">Component Type: {{ procDetailsForm.get('componentDetail').get('componentType').value }}</p>
+                <h5 class="form-label my-3">Component Type: {{ procDetailsForm.get('componentDetail').get('componentType').value }}</h5>
                 
-                <p class="form-label font-weight-bold">Component Name: {{ procDetailsForm.get('componentDetail').get('componentName').value }}</p>
+                <h5 class="form-label my-3">Component Name: {{ procDetailsForm.get('componentDetail').get('componentName').value }}</h5>
                 
-                <p class="form-label font-weight-bold">Quantity: {{ procDetailsForm.get('componentDetail').get('quantity').value }}</p>
+                <h5 class="form-label my-3">Quantity: {{ procDetailsForm.get('componentDetail').get('quantity').value }}</h5>
                 
-                <p class="form-label font-weight-bold">Processing Charge: {{ processingDetailsResponse.processingCharge }}</p>
+                <h5 class="form-label my-3">Processing Charge: {{ processingDetailsResponse.processingCharge }}</h5>
                 
-                <p class="form-label font-weight-bold">Packaging And Delivery Charge: {{ processingDetailsResponse.packagingAndDeliveryCharge }}</p>
+                <h5 class="form-label my-3">Packaging And Delivery Charge: {{ processingDetailsResponse.packagingAndDeliveryCharge }}</h5>
                 
-                <p class="form-labe font-weight-bold">Date Of Delivery: {{ processingDetailsResponse.dateOfDelivery|date:'mediumDate' }}</p>
+                <h5 class="form-labe my-2">Date Of Delivery: {{ processingDetailsResponse.dateOfDelivery|date:'mediumDate' }}</h5>
                 <br/>
             </div>
         </div>
