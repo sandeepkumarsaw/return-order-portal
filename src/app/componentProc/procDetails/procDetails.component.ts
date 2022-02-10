@@ -13,7 +13,7 @@ import { ComponentProcService } from '../componentProc.service';
 export class ProcDetailsComponent implements OnInit {
   
   displayProcessDetails = true
-  completeProcessingResponse = ""
+  completeProcessingResponse = null
 
   procDetailsForm: FormGroup
 
@@ -97,7 +97,7 @@ export class ProcDetailsComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response)
-          this.completeProcessingResponse = response.response
+          this.completeProcessingResponse = response.res
         },
       error => {
         console.log(error)
