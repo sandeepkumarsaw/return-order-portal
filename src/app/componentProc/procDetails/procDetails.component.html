@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label class="form-label font-weight-bold">Name</label>
-                        <input formControlName="name" type="text" placeholder="Jason Doe" class="form-control rounded-1"/>
+                        <input formControlName="name" type="text" class="form-control rounded-1"/>
                         <p class="form-label alert-danger font-weight-light font-italic float-right" *ngIf="procDetailsForm.get('name').touched && !procDetailsForm.get('name').valid">Invalid Name!</p>
                     </div>
                     
@@ -35,9 +35,10 @@
                         </select>
                     </div>
                     
+                    <!--
                     <div class="form-group">
                         <label class="form-label font-weight-bold">Name (As on the card)</label>
-                        <input type="text" placeholder="Jason Doe" class="form-control"/>
+                        <input type="text" class="form-control"/>
                     </div>
                     
                     <div class="form-group">
@@ -63,7 +64,8 @@
                             </div>
                         </div>
                     </div>
-
+                    -->
+                    
                     <div class="form-group">
                         <label class="form-label font-weight-bold" for="creditLimit">Credit Limit:</label>
                         <input formControlName="creditLimit" type="number" class="form-control rounded-1"/>
@@ -116,8 +118,7 @@
             <div class="card rounded-1">
                 <div class="card-body">
                     <button (click)="postprocDetailsForm()" class="btn btn-dark btn-lg col-md-5">Submit</button>
-                    <button type="reset" class="btn btn-dark btn-lg col-md-5 float-right">Reset</button>
-                    
+                    <button (click)="ngOnInit()" type="reset" class="btn btn-dark btn-lg col-md-5 float-right">Reset</button>
                 </div>
             </div>
             <br/><br/>
@@ -157,12 +158,12 @@
         <div [hidden]="completeProcessingResponse" class="card rounded-1">
             <div class="card-body">
                 <button (click)="postcompleteProcessingDetails()" class="btn btn-dark btn-lg col-md-5">Submit</button>
-                <button type="reset" class="btn btn-dark btn-lg col-md-5 float-right">Clear</button>
+                <button class="btn btn-dark btn-lg col-md-5 float-right" routerLink="/home-page">Cancel</button>
             </div>
         </div>
         <div [hidden]="!completeProcessingResponse" class="card rounded-1">
             <div class="card-body">
-                <button class="btn btn-dark btn-lg col-md-5 float-right" routerLink="home-page">Homepage</button>
+                <button class="btn btn-dark btn-lg col-md-5 float-right" routerLink="/home-page">Homepage</button>
             </div>
         </div>
         
